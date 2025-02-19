@@ -1,0 +1,173 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\definecolor{craneyellow}{RGB}{233, 187, 61}
+\definecolor{craneblue}{RGB}{4, 6, 76}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usecolortheme{crane}
+\usefonttheme{professionalfonts}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=craneblue,
+	urlcolor=craneyellow
+}
+
+\title{Centrális Határeloszlás-tétel (CHT)}
+\subtitle{Matematikai Statisztika}
+\author{Czibik Lóránt Patrik}
+\institute{Miskolci Egyetem}
+\date{\today}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\section{Bevezetés}
+	\begin{frame}{Bevezetés}
+		\textbf{A Centrális Határeloszlás-tétel lényege:}
+		\begin{itemize}
+			\item Nagyméretű minták átlaga közelít a normális eloszláshoz.
+			\item Fontos a statisztikában és a valószínűségszámításban.
+			\item Gyakorlati alkalmazások a különböző tudományterületeken.
+		\end{itemize}
+	\end{frame}
+	
+	\section{Matematikai alapok}
+	\begin{frame}{A Centrális Határeloszlás-tétel definíciója}
+		\textbf{Definíció:} Legyenek $X_1, X_2, \ldots, X_n$ független, azonos eloszlású valószínűségi változók, melyek várható értéke $\mu$ és szórása $\sigma$. Ekkor a megfelelően normált összeg:
+		\begin{equation}
+			Z_n = \frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma \sqrt{n}}
+		\end{equation}
+		$n \to \infty$ esetén standard normális eloszlást követ: $Z_n \sim N(0,1)$.
+	\end{frame}
+	
+	
+	\section{Alkalmazások}
+	\begin{frame}{Gyakorlati alkalmazások}
+		\begin{itemize}
+			\item \textbf{Statisztikai következtetés:} A CHT alapvető szerepet játszik a mintavételi eloszlások és a hipotézisvizsgálatok területén.
+			\item \textbf{Minőségellenőrzés:} Segítségével meghatározhatók a gyártási folyamatok során előforduló variabilitások.
+			\item \textbf{Pénzügy:} A részvényhozamok és egyéb pénzügyi mutatók eloszlásának modellezésében is alkalmazzák.
+		\end{itemize}
+	\end{frame}
+	
+	\section{R nyelv és használt csomagok}
+	\begin{frame}{Az R nyelv}
+		Az R egy nyílt forráskódú nyelv statisztikai számításokhoz és adatelemzéshez.
+		\vfill
+		\begin{block}{Miért használtam}
+			\begin{itemize}
+				\item Erőteljes statisztikai és grafikai funkciók
+				\item Könnyen bővíthető csomagokkal
+				\item Korábbi tapasztalat
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{ggplot2 csomag}
+		A \texttt{ggplot2} csomag a grafikonok készítésére szolgál, pl. hisztogramok és sűrűségfüggvények.
+		\vfill
+		\begin{block}{Miért használtam}
+			\begin{itemize}
+				\item Segít a mintaátlagok és normális eloszlás ábrázolásában
+				\item Testreszabható ábrák, pl. színek, jelmagyarázatok
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{dplyr csomag}
+		A \texttt{dplyr} csomag az adatok manipulálására (pl. data.frame) szolgál.
+		\vfill
+		\begin{block}{Miért használtam}
+			\begin{itemize}
+				\item Megkönnyíti a data frame kezelését és feldolgozását, ami szükséges a bővíthetőséghez
+				\item Hasznos funkciók: szűrés (\texttt{filter}), rendezés (\texttt{arrange}), stb.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\section{Szimuláció R-ben}
+	\begin{frame}{A szimulációk felépítése}
+		\begin{itemize}
+			\item Véletlen számok generálása különböző eloszlásokból.
+			\item Mintavételezés és átlagok kiszámítása.
+			\item Mintaátlagok ábrázolása hisztogram formájában.
+			\item Empirikus sűrűség és normális eloszlás ábrázolása összehasonlításképpen.
+		\end{itemize}
+		\begin{block}{Megjegyzés}
+			Az alábbi 3 példa bele van hardcode-olva a programba, viszont bővíthető ha a \texttt{simulations} listához hozzáadunk elemeket.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Szimulációs példa 1 | Exponenciális eloszlás}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\textbf{Példa:} Szimuláljuk a CHT-t exponenciális eloszlású adatokkal.
+				\begin{itemize}
+					\item Generáljunk \textbf{5000} mintát exponenciális eloszlásból (\(\lambda = 1\)).
+					\item Minden minta \textbf{100} elemű.
+					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
+					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\includegraphics[width=\textwidth]{img/sim-1.png}
+					\caption{A CHT exponenciális eloszlással szemléltetve}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Szimulációs példa 2 | Binomiális eloszlás}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\textbf{Példa:} Szimuláljuk a CHT-t binomiális eloszlású adatokkal.
+				\begin{itemize}
+					\item Generáljunk \textbf{1000} mintát binomiális eloszlásból (\(n=10, p=0.3\)).
+					\item Minden minta \textbf{100} elemű.
+					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
+					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\includegraphics[width=\textwidth]{img/sim-2.png}
+					\caption{A CHT binomiális eloszlással szemléltetve}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Szimulációs példa 3 | Egyenletes eloszlás}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\textbf{Példa:} Szimuláljuk a CHT-t egyenletes eloszlású adatokkal.
+				\begin{itemize}
+					\item Generáljunk \textbf{5000} mintát egyenletes eloszlásból (\([0,1]\)).
+					\item Minden minta \textbf{100} elemű.
+					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
+					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\includegraphics[width=\textwidth]{img/sim-3.png}
+					\caption{A CHT egyenletes eloszlással szemléltetve}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	
+	\section{Köszönöm a figyelmet!}
+
+	
+\end{document}
