@@ -15,7 +15,7 @@
 \hypersetup{
 	colorlinks=true,
 	linkcolor=craneblue,
-	urlcolor=craneyellow
+	urlcolor=craneblue
 }
 
 \title{Centrális Határeloszlás-tétel (CHT)}
@@ -37,7 +37,7 @@
 				\begin{itemize}
 					\item Nagyméretű minták átlaga közelít a normális eloszláshoz.
 					\item Fontos a statisztikában és a valószínűségszámításban.
-					\item Gyakorlati alkalmazások a különböző tudományterületeken.
+					\item Megmagyarázza, hogy miért találkozunk olyan gyakran normális eloszlású adatokkal a valós életben.
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.4\textwidth}
@@ -49,7 +49,7 @@
 		\end{columns}
 	\end{frame}
 	
-	\section{Matematikai alapok}
+	\section{A tétel definíciója}
 	\begin{frame}{A Centrális Határeloszlás-tétel definíciója}
 		\textbf{Definíció:} Legyenek $\xi_1, \xi_2, \ldots, \xi_n$ független, azonos eloszlású valószínűségi változók, melyek várható értéke $\mu$ és szórása $\sigma$. Ekkor a megfelelően normált összeg:
 		\begin{equation}
@@ -73,7 +73,7 @@
 			\item Az emberek magassága
 			\item Az emberek napi kalóriabevitele
 			\item Egy gyártósoron készült alkatrészek mérete (pl. csavarok hossza)
-			\item A vonatok érkezési késései (ez nem vonatkozik a MÁV-ra)
+			\item A repülőgépek érkezési késései
 		\end{itemize}
 	\end{frame}
 	
@@ -97,7 +97,7 @@
 			\begin{itemize}
 				\item A mintaátlagok eloszlásának szemléltetésére hisztogramokkal és sűrűségfüggvényekkel.
 				\item A normális eloszlás és az empirikus adatok összehasonlítására.
-				\item Lehetővé teszi az ábrák testreszabását (pl. színek, jelmagyarázat, vonalstílusok).
+				\item Lehetővé teszi az ábrák testreszabását (pl. színek, jelmagyarázat).
 			\end{itemize}
 		\end{block}
 	\end{frame}
@@ -109,7 +109,6 @@
 			\begin{itemize}
 				\item Segít az adatok gyors és egyszerű átalakításában.
 				\item A mintaátlagok kiszámításánál és az adatok előkészítésénél használtam.
-				\item Könnyen kombinálható más csomagokkal, például a \texttt{ggplot2}-vel.
 			\end{itemize}
 		\end{block}
 	\end{frame}
@@ -120,22 +119,22 @@
 			\item Véletlen számok generálása különböző eloszlásokból.
 			\item Mintavételezés és átlagok kiszámítása.
 			\item Mintaátlagok ábrázolása hisztogram formájában.
-			\item Empirikus sűrűség és normális eloszlás sűrűségfüggvény ábrázolása összehasonlításképpen.
+			\item Az adott eloszlás és a normális eloszlás sűrűségfüggvényeinek ábrázolása összehasonlításképpen.
 		\end{itemize}
 		\begin{block}{Megjegyzés}
-			Az alábbi 3 példa futtatható a demo (1) opció kiválasztásával, viszont a felhasználó konzolos bemenetről tetszőleges paraméterekkel is indíthat szimulációt a (2) opcióval. A jobb oldalon látható képeket a program generálta.
+			A felhasználó konzolos bemenetről, tetszőleges paraméterekkel is indíthat szimulációt az (1) opcióval, a (2) opcióval az exponenciális demo, a (3) opcióval a binomiális demo és a (4) opcióval az egyenletes demo futtatható. A jobb oldalon látható képeket a program generálta.
 		\end{block}
 	\end{frame}
 	
 	\begin{frame}{Szimulációs példa 1 | Exponenciális eloszlás}
+		\textbf{Példa:} Szimuláljuk a CHT-t exponenciális eloszlású adatokkal.
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
-				\textbf{Példa:} Szimuláljuk a CHT-t exponenciális eloszlású adatokkal.
 				\begin{itemize}
-					\item Generáljunk \textbf{5000} mintát exponenciális eloszlásból (\(\lambda = 1\)).
+					\item Generáljunk \textbf{100} mintát exponenciális eloszlásból (\(\lambda = 1\)).
 					\item Minden minta \textbf{100} elemű.
 					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
-					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+					\item Ábrázoljuk a sűrűségfüggvényt és a normális eloszlást.
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.5\textwidth}
@@ -148,14 +147,14 @@
 	\end{frame}
 	
 	\begin{frame}{Szimulációs példa 2 | Binomiális eloszlás}
+		\textbf{Példa:} Szimuláljuk a CHT-t binomiális eloszlású adatokkal.
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
-				\textbf{Példa:} Szimuláljuk a CHT-t binomiális eloszlású adatokkal.
 				\begin{itemize}
 					\item Generáljunk \textbf{1000} mintát binomiális eloszlásból (\(n=10, p=0.3\)).
-					\item Minden minta \textbf{100} elemű.
+					\item Minden minta \textbf{1000} elemű.
 					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
-					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+					\item Ábrázoljuk a sűrűségfüggvényt és a normális eloszlást.
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.5\textwidth}
@@ -168,14 +167,14 @@
 	\end{frame}
 	
 	\begin{frame}{Szimulációs példa 3 | Egyenletes eloszlás}
+		\textbf{Példa:} Szimuláljuk a CHT-t egyenletes eloszlású adatokkal.
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
-				\textbf{Példa:} Szimuláljuk a CHT-t egyenletes eloszlású adatokkal.
 				\begin{itemize}
-					\item Generáljunk \textbf{5000} mintát egyenletes eloszlásból (\([0,1]\)).
-					\item Minden minta \textbf{100} elemű.
+					\item Generáljunk \textbf{1000} mintát egyenletes eloszlásból (\([0,1]\)).
+					\item Minden minta \textbf{10000} elemű.
 					\item Számítsuk ki minden minta átlagát, eloszlásait ábrázoljuk hisztogramon.
-					\item Ábrázoljuk az empirikus sűrűséget és a normális eloszlást.
+					\item Ábrázoljuk a sűrűségfüggvényt és a normális eloszlást.
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.5\textwidth}
@@ -187,6 +186,21 @@
 		\end{columns}
 	\end{frame}
 	
+	\begin{frame}{Szimulációs példa 4 | Interaktív szimuláció}
+		Adjátok meg a paramétereket, és futtassunk azokkal szimulációt!
+		
+		\textbf{Megadandó értékek:}
+		\begin{itemize}
+			\item Eloszlás típusa (pl. poisson, khí-négyzet, gamma)
+			\item Eloszlás paraméterei (\(param \ge 0\))
+			\item Minták száma (\(n\_samples \ge 100\))
+			\item Mintánkénti elemszám (\(sample\_size \ge 100\))
+		\end{itemize}
+		
+		\begin{block}{Forráskód}
+			A forráskód elérhető a \url{https://github.com/CLorant/mat-stat} linken.
+		\end{block}
+	\end{frame}
 	
 	\section{Köszönöm a figyelmet!}
 
